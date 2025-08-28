@@ -35,6 +35,7 @@ def tweet(client, text):
 strings = list()
 
 with open('text_data.json', 'r') as f:
+  print("Loading strings")
   data = json.load(f)
   for s in data['strings']:
     string = re.sub(r"((\\|\^).[0-9]?)|(\/(.+)?)", "", s)
@@ -52,6 +53,8 @@ def tweet_quote():
   tweet(client, text)
   print("Job ran at:", datetime.datetime.now(timezone("Asia/Bangkok")))
 
+print("Scheduling twitter bot")
+tweet_quote() # Tweet once
 schedule.every().day.at("14:00", timezone("Asia/Bangkok")).do(tweet_quote)
 
 while True:
