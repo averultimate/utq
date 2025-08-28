@@ -53,15 +53,18 @@ def get_word():
 
 def tweet_quote():
     client = get_client()
-    text = get_word()
-    tweet(client, text)
+
+    for _ in range(6):
+        text = get_word()
+        tweet(client, text)
     print("Job ran at:", datetime.datetime.now(timezone("Asia/Bangkok")))
 
 
 print("Scheduling twitter bot")
 tweet_quote() # Tweet once
-schedule.every().day.at("15:00", timezone("Asia/Bangkok")).do(tweet_quote)
+schedule.every(6).hours.do(tweet_quote)
 
 while True:
     schedule.run_pending()
     time.sleep(1)
+
