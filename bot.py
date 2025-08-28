@@ -39,7 +39,7 @@ with open('text_data.json', 'r') as f:
   data = json.load(f)
   for s in data['strings']:
     string = re.sub(r"((\\|\^).[0-9]?)|(\/(.+)?)", "", s)
-    string = re.sub(r"&|#", "\n", string)
+    string = re.sub(r"&|#", "", string)
   
     if len(string) > 10:
       strings.append(string)
