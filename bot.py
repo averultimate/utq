@@ -82,9 +82,9 @@ def run_flask_app():
 
 if __name__ == '__main__':
     # Start the bot's logic in a separate thread
-    bot_thread = Thread(target=run_bot)
-    bot_thread.start()
     
     # Start the Flask app in the main thread (this is a blocking call)
     flask_thread = Thread(target=run_flask_app)
     flask_thread.start()
+
+    run_bot()
