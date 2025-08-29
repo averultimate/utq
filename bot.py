@@ -71,16 +71,19 @@ for i in range(12):
             break
 
 
+client = get_client()
+quotes = load_quotes()
+
+
 @app.route("/")
 def index():
     # Pinged by something
-    global next_tweet
+    global next_tweet, quotes
 
     current_tick = datetime.now()
 
     if current_tick >= next_tweet:
         client = get_client()
-        quotes = load_quotes()
 
         for i in range(tweet_count):
             tweet_quote(client, quotes)
@@ -103,8 +106,11 @@ def index():
 
         next_tweet = last_tick
 
-    return f"I will tweet at {next_tweet} (in {next_tweet.hour - current_tick.hour} hour(s) and {next_tweet.minute - current_tick.minute} minute(s).)"
+    returned_text = f"I will tweet at {next_tweet} (in {next_tweet.hour - current_tick.hour} hour(s) and {next_tweet.minute - current_tick.minute} minute(s).)"
+
+    print(returned_text)
+    return returned_text
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=8080, debug=True)
