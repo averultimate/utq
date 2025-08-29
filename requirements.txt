@@ -1,5 +1,2 @@
 flask
-keep_alive
-pytz>=2025.2
-schedule>=1.2.2
 tweepy>=4.16.0
