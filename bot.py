@@ -107,7 +107,7 @@ def index():
 
         next_tweet = last_tick
 
-    returned_text = f"I will tweet at {next_tweet} (in {next_tweet.hour - current_tick.hour - 1} hour(s) and {60 - current_tick.minute} minute(s).)"
+    returned_text = f"I will tweet at {next_tweet} (in {next_tweet.hour - current_tick.hour - 2} hour(s) and {59 - current_tick.minute} minute(s).)"
 
     print(returned_text)
     return returned_text
