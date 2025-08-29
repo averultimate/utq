@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 last_tick = datetime.now()
 last_hour = last_tick.hour
-tweet_hour_multiple = 6
+tweet_hour_multiple = 2
 tweet_count = 3
 next_tweet = None
 
@@ -82,11 +82,15 @@ def index():
     global next_tweet, quotes
 
     current_tick = datetime.now()
+    tweet_quote(get_client(), quotes)
+    
+    """
 
     if current_tick >= next_tweet:
         client = get_client()
 
         for i in range(tweet_count):
+            print("Trying to tweet")
             tweet_quote(client, quotes)
 
         if current_tick.hour + tweet_hour_multiple < 24:
@@ -112,7 +116,8 @@ def index():
     returned_text = f"(at {current_tick}) I will tweet at {next_tweet} (in {next_tweet.hour - current_tick.hour - (2 if sixty_minute else 1)} hour(s) and {59 - current_tick.minute} minute(s).)"
 
     print(returned_text)
-    return returned_text
+    """
+    return ""
 
 
 if __name__ == "__main__":
