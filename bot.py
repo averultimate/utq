@@ -1,4 +1,4 @@
-from flask import Flask
+"""from flask import Flask
 from datetime import datetime, timedelta
 import os
 import json
@@ -84,7 +84,7 @@ def index():
     current_tick = datetime.now()
     tweet_quote(get_client(), quotes)
     
-    """
+    
 
     if current_tick >= next_tweet:
         client = get_client()
@@ -116,9 +116,33 @@ def index():
     returned_text = f"(at {current_tick}) I will tweet at {next_tweet} (in {next_tweet.hour - current_tick.hour - (2 if sixty_minute else 1)} hour(s) and {59 - current_tick.minute} minute(s).)"
 
     print(returned_text)
-    """
+    
     return ""
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=8080, debug=True)
+    app.run(host='0.0.0.0', port=8080, debug=True)"""
+
+import os
+import tweepy
+
+def get_client():
+    # Make sure these environment variables are set correctly
+    client = tweepy.Client(
+        consumer_key=os.environ["CONSUMER_KEY"],
+        consumer_secret=os.environ["CONSUMER_SECRET"],
+        access_token=os.environ["ACCESS_TOKEN"],
+        access_token_secret=os.environ["ACCESS_TOKEN_SECRET"],
+    )
+    return client
+
+def test_tweet():
+    client = get_client()
+    try:
+        client.create_tweet(text="This is a test tweet from my bot!")
+        print("Successfully tweeted!")
+    except Exception as e:
+        print(f"Error tweeting: {e}")
+
+if __name__ == "__main__":
+    test_tweet()
