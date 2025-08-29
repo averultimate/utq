@@ -55,8 +55,11 @@ def tweet_quote():
 
     for _ in range(3):
         text = get_word()
-        tweet(client, text)
-        time.sleep(60 * 15) # Avoid rate limiting
+        try:
+             tweet(client, text)
+        except Exception as e:
+             print(f"Could not tweet with error: {e}")
+        time.sleep(60 * 5) # Avoid rate limiting
     print("Job ran at:", datetime.datetime.now(timezone("Asia/Bangkok")))
 
 
