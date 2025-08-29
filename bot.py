@@ -66,18 +66,17 @@ def run_bot():
         print("Twitter bot scheduled to tweet every 6 hours.")
     else:
         print("No quotes loaded, bot will not schedule tweets.")
-    
-    while True:
-        schedule.run_pending()
-        time.sleep(1)
 
 # Flask route for keep-alive pings
 @app.route('/')
 def index():
+    schedule.run_pending()
+    print("Schedule ran")
     return "Bot is online."
 
 # Main function to start the Flask app and the bot's thread
 def run_flask_app():
+    run_bot()
     app.run(host='0.0.0.0', port=8080)
 
 if __name__ == '__main__':
@@ -86,5 +85,3 @@ if __name__ == '__main__':
     # Start the Flask app in the main thread (this is a blocking call)
     flask_thread = Thread(target=run_flask_app)
     flask_thread.start()
-
-    run_bot()
