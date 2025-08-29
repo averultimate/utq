@@ -64,9 +64,9 @@ def tweet_quote():
 
 
 print("Scheduling twitter bot")
+keep_alive()
 tweet_quote() # Tweet once
 schedule.every(6).hours.do(tweet_quote)
-keep_alive()
 
 while True:
     schedule.run_pending()
