@@ -8,8 +8,7 @@ import schedule
 import time
 import datetime
 from pytz import timezone
-from keep_alive import keep_alive
-keep_alive()
+from keep_alive import keep_alive
 
 def get_client():
 
@@ -63,9 +62,11 @@ def tweet_quote():
 print("Scheduling twitter bot")
 tweet_quote() # Tweet once
 schedule.every(6).hours.do(tweet_quote)
+keep_alive()
 
 while True:
     schedule.run_pending()
-    time.sleep(1)
+    print("Checked scheduler")
+    time.sleep(60)
 
 
