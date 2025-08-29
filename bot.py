@@ -37,6 +37,7 @@ def load_quotes():
             return quotes
     except FileNotFoundError:
         print("Error: 'text_data.json' not found.")
+        # Return an empty list to indicate failure
         return []
     except json.JSONDecodeError:
         print("Error: Could not decode 'text_data.json'. Check for formatting issues.")
@@ -66,7 +67,9 @@ def run_bot():
     else:
         print("No quotes loaded, bot will not schedule tweets.")
     
+    # This loop must be outside the `if` block to continuously check the schedule
     while True:
+        print("Checked")
         schedule.run_pending()
         time.sleep(1)
 
