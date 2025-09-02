@@ -78,6 +78,7 @@ for i in range(12):
 
 client = get_client()
 quotes = load_quotes()
+tweet_quote(client, quotes)
 
 
 @app.route("/")
