@@ -14,8 +14,8 @@ app = Flask(__name__)
 
 last_tick = datetime.now()
 last_hour = last_tick.hour
-tweet_hour_multiple = 2
-tweet_count = 1
+tweet_hour_multiple = 6
+tweet_count = 3
 next_tweet = None
 
 
